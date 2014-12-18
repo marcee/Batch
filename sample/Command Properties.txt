@@ -1,0 +1,36 @@
+Main.Logfile=c:/logs/mylogfile.txt
+Main.Commands=DoThis, DoThat, NowThis, ThenThis, ThenThat, AndFinallyThis, DisplayStatus
+
+DoThis.Class=com.mydomain.CVSCheckOut
+DoThis.Version={1}
+DoThis.Directory=c:/tmp/MyApp/source
+
+DoThat.Class=com.mydomain.JavaCompile
+DoThat.Source=c:/tmp/MyApp
+DoThat.Target=c:/tmp/MyApp/compiled
+DoThat.Dependency=DoThis
+
+NowThis.Class=com.mydomain.CreateJarFile
+NowThis.Source=c:/tmp/MyApp/compiled
+NowThis.Target=c:/tmp/MyApp/myapp.jar
+NoWThis.Dependency=DoThat
+
+ThenThis.Class=com.mydomain.SecureCopy
+ThenThis.Source=c:/tmp/MyApp/myapp.jar
+ThenThis.Target={2}
+ThenThis.RemoteDirectory=/opt/apps/myapp/lib
+ThenThis.Dependency=NowThis
+
+ThenThat.Class=com.mydomain.RestartRemoteApache
+ThenThat.Target={2}
+ThenThat.Script=/opt/products/Apache2.3/bin/apachectl restart
+ThenThat.Dependency=ThenThis
+
+AndFinallyThis.Class=com.mydomain.SendMail
+AndFinallyThis.MailServer=smtp.mydomain.com
+AndFinallyThis.To=buildteam@mydomain.com
+AndFinallyThis.Subject=Build {1}
+AndFinallyThis.Body=Build and deploy {1} completed with status {status}
+
+DisplayStatus.Class=com.mydomain.DisplayStatus
+

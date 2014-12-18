@@ -1,0 +1,1 @@
+MyUtil mycommand.ini build52 marcee@myserver 

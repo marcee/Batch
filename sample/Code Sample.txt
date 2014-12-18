@@ -1,0 +1,49 @@
+class Command
+{
+	String 		commandName = null;
+	Properties 	properties = null;
+	Logger		logger = null;
+	
+	// Constructor
+	// Create instance of command and initialize it
+	Command(String aName, Properties aProperties, Logger aLogger)
+	{
+		this.setCommandName(aName);
+		this.setProperties(aProperties);
+		this.setLogger(aLogger);
+		this.initialize();
+	}
+	
+	// Initialize()
+	// Use the properties to initialize the instance
+	void initialize()
+	{
+	
+	}
+	
+	// Run()
+	// Perform the primary action of the command based on the
+	// configuration and log the output on the logger.
+	// Return 0 for success or non-zero for an error
+	int run()
+	{
+	
+	}
+}
+
+class SecureCopy inherits Command
+{
+
+	void initialize()
+	{
+		this.getLogger().info(this.getName() + " initializing");
+		String sourceFile = this.getProperty(this.getName()+".Source");
+	}
+
+
+	void run()
+	{
+		this.getLogger().info(this.getName() + " running");
+	}
+
+}
